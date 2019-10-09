@@ -5,11 +5,11 @@
     </h3>
     <div class="widget">
         <ul id="recent-post">
-            {{ range first 5 (where .Site.Pages "Type" "post") }}
+            {{ range first 5 (where .Site.RegularPages "Type" "post") }}
             <li>
                 <div class="item-thumbnail">
                     <a href="{{ .Permalink }}" class="thumbnail">
-                    {{ if isset .Params "banner" }}
+                    {{ if and (isset .Params "banner") (not (eq .Params.banner "")) }}
                         <span style="background-image:url({{ .Params.banner | absURL }})" alt="{{ $.Title }}" class="thumbnail-image"></span>
                     {{else}}
                         <span class="thumbnail-image thumbnail-none"></span>
@@ -20,7 +20,8 @@
                     {{ if isset .Params "categories" }}
                     {{ if gt (len .Params.categories) 0 }}
                     <p class="item-category">
-                        <a class="article-category-link" href="{{ $.Site.BaseURL }}categories/{{ index .Params.categories 0 | urlize | lower }}">
+                        {{ $url := printf "%s/%s" "categories" (index .Params.categories 0 | urlize | lower)}}
+                        <a class="article-category-link" href="{{ $url | absURL }}">
                         {{ index .Params.categories 0 }}
                         </a>
                     </p>

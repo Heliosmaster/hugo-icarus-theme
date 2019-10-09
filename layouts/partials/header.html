@@ -31,10 +31,10 @@
         </nav>
         <div id="search-form-wrap">
           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
-              <input type="search" name="q" results="0" class="search-form-input" placeholder="{{with .Site.Data.l10n.search.placeholder}}{{.}}{{end}}">
+              <input type="search" name="q" class="search-form-input" placeholder="{{with .Site.Data.l10n.search.placeholder}}{{.}}{{end}}">
               <button type="submit" class="search-form-submit">
               </button>
-              <input type="hidden" name="q" value="site:{{ .Site.BaseURL }}">
+              <input type="hidden" name="sitesearch" value="{{ .Site.BaseURL }}" />
          </form>
         </div>
     </div>
@@ -60,8 +60,8 @@
           {{ end }}
           <td>
           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
-          <input type="search" name="q" results="0" class="search-form-input" placeholder="Search">
-          <input type="hidden" name="q" value="site:{{ .Site.BaseURL }}">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="{{ .Site.BaseURL }}" />
           </form>
         </td>
       </tr>
